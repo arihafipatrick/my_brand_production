@@ -20,6 +20,18 @@ const options = {
       version: "1.0.0",
       description: "A simple Express Blog API"
     },
+    components: {
+      securitySchemes: {
+          JWT: {
+            type: 'http',
+            scheme: 'bearer',
+            bearerFormat: 'JWT'
+          }
+      }
+  },
+  security: [{
+    JWT: []
+  }],
     servers: [
       {
         url:"http://localhost:3000"

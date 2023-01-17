@@ -77,8 +77,8 @@ const {isAdmin} = require ('../verifyRole')
  * /api/posts:
  *   post:
  *     summary: Create a new post
- *     security:
- *       - JWT: []
+ *
+ *
  *     tags: [Posts(Blog)]
  *     requestBody:
  *       required: true
