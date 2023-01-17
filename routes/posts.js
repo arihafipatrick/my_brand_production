@@ -12,6 +12,11 @@ const {isAdmin} = require ('../verifyRole')
 /**
  * @swagger
  * components:
+ *   securitySchemes:
+ *     JWT:
+ *       type: http
+ *       scheme: bearer
+ *       bearerFormat: JWT
  *   schemas:
  *     Post:
  *       type: object
@@ -72,6 +77,8 @@ const {isAdmin} = require ('../verifyRole')
  * /api/posts:
  *   post:
  *     summary: Create a new post
+ *     security:
+ *       - JWT: []
  *     tags: [Posts(Blog)]
  *     requestBody:
  *       required: true
