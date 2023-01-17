@@ -2,9 +2,9 @@
   "name": "jwt",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "start": "nodemon index.js",
+    "start": "nodemon server.js",
     "test": "mocha",
     "coverage": "nyc --reporter=text npm run test"
   },
