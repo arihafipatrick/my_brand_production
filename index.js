@@ -58,7 +58,8 @@ mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser: true },
  () => console.log('Connected to DB'))
  
 //lISTENING
-app.listen(3000);
+const PORT = process.env.PORT || 3000;
+app.listen(PORT);
 module.exports = app;
 
 
