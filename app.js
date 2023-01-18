@@ -25,7 +25,8 @@ const options = {
           JWT: {
             type: 'http',
             scheme: 'bearer',
-            bearerFormat: 'JWT'
+            bearerFormat: 'JWT',
+            in:'header'
           }
       }
   },
