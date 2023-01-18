@@ -51,6 +51,7 @@ app.use('/api/user', authRoute);
 app.use('/api/posts', postRoute);
 app.use('/api/message',messageRoute);
 app.get("", (req, res) => res.render("index"));
+app.get("/about", (req, res) => res.render("about"));
 
 dotenv.config();
  //connect to DB
