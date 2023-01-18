@@ -55,12 +55,14 @@ app.get('/', (req, res) =>{
 
 dotenv.config();
  //connect to DB
-mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser: true },
- () => console.log('Connected to DB'))
+ mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser: true }, () => {
+  console.log("connected to db");
+});
  
 //lISTENING
-const PORT = process.env.PORT || 3000;
-app.listen(PORT);
+app.listen(process.env.PORT || PORT, () => {
+  console.log("NODE APP STARTED");
+});
 module.exports = app;
 
 
