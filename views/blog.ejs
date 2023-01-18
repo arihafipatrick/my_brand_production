@@ -211,9 +211,9 @@ right: 0px;
         <p>Discover some fascinating, cool posts!</p>
 </div>
 </div>
-<div class="row">
+<!-- <div class="row">
   <div class="cards" id="showPosts">
-  </div>
+  </div> -->
   		<div class="col-md-4" id="cards">
   
       <h4>Post 1</h4>
@@ -250,27 +250,7 @@ cool posts ome fascin.
 
       </div>
   	</div>
-  	</div>
-    <script>
-       showData();
-      function showData()
-{
-  document.getElementById("showPosts").innerHTML="";
-  let post=new Array();
-posts=JSON.parse(localStorage.getItem("post"))?JSON.parse(localStorage.getItem("post")):[]
-  if(posts)
-  {
-    for(let i=0;i<posts.length;i++)
-    {
-  let addDiv=document.createElement('div');
-  addDiv.className="row";
-  addDiv.innerHTML='<div class="col-sm-4" style="padding: 10px;">'+posts[i].title+'</div><div class="col-sm-4" style="padding: 10px;">'+posts[i].author+'</div><div class="col-sm-4" style="padding: 10px;">'+posts[i].body+'</div>';
-  document.getElementById("showPosts").appendChild(addDiv);
-
-    }
-  }
-  }
-    </script>
+  	</div>   
 </body>
 </html>
 
