@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	 <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<link rel="stylesheet" href="w3.css">
+	<title>My Portfolio</title>
+
+	<style>
+		* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0px;
+  font-family: 'segoe ui';
+}
+
+.iyi {
+  height: 50px;
+  width: 100%;
+  background-color: #ffff;
+  position: relative;
+}
+
+.iyi > .iyi-header {
+  display: inline;
+}
+
+.iyi > .iyi-header > .iyi-title {
+  display: inline-block;
+  font-size: 22px;
+  color: #000;
+  padding: 10px 10px 10px 10px;
+}
+
+.iyi > .iyi-btn {
+  display: none;
+}
+
+.iyi > .iyi-links {
+  display: inline;
+  float: right;
+  font-size: 18px;
+}
+
+.iyi > .iyi-links > a {
+  display: inline-block;
+  padding: 13px 10px 13px 10px;
+  text-decoration: none;
+  color: #000;
+}
+
+.iyi > .iyi-links > a:hover {
+  background-color: #1D4ED8;
+  color: #fff;
+}
+
+.iyi > #iyi-check {
+  display: none;
+}
+ 
+ .developer{
+  color:#1D4ED8 ;
+ }
+.homeimage{
+  /* use 1 */
+
+box-sizing: border-box;
+
+position: absolute;
+max-width: 26.3%;
+opacity: 0.7;
+backdrop-filter: blur(2px);
+right: 160px;
+ 
+
+/* Note: backdrop-filter has minimal browser support */
+
+}
+.kuruhande{
+  margin-top: 150px;
+}
+.iyi a.active {
+  background-color: #1D4ED8;
+  color: white;
+}
+
+@media (max-width:600px) {
+  .iyi > .iyi-btn {
+    display: inline-block;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+  }
+  .iyi > .iyi-btn > label {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    padding: 13px;
+  }
+  .iyi > .iyi-btn > label:hover,.iyi  #iyi-check:checked ~ .iyi-btn > label {
+    background-color:#ffff;
+  }
+  .iyi > .iyi-btn > label > span {
+    display: block;
+    width: 25px;
+    height: 10px;
+    border-top: 2px solid #1D4ED8;
+
+  }
+  .iyi > .iyi-links {
+    position: absolute;
+    display: block;
+    width: 100%;
+    background-color: #333;
+    height: 0px;
+    transition: all 0.3s ease-in;
+    overflow-y: hidden;
+    top: 50px;
+    left: 0px;
+  }
+  .iyi > .iyi-links > a {
+    display: block;
+    width: 100%;
+  }
+  .iyi > #iyi-check:not(:checked) ~ .iyi-links {
+    height: 0px;
+
+  }
+  .iyi > #iyi-check:checked ~ .iyi-links {
+    height: calc(100vh - 50px);
+    overflow-y: auto;
+  }
+  .homeimage{
+  /* use 1 */
+
+box-sizing: border-box;
+
+position: absolute;
+max-width: 100%;
+background: url(use.jpg);
+opacity: 0.7;
+backdrop-filter: blur(2px);
+right: 0px;
+
+/* Note: backdrop-filter has minimal browser support */
+
+}
+.kuruhande{
+  margin-top: 10px;
+}
+}
+
+[class*="col"]{
+			padding: 1rem;
+			margin-top: 20px;
+			background-color: #ffff;
+			border: 2px solid #fff;
+		}
+	</style>
+<body>
+<div class="iyi">
+  <input type="checkbox" id="iyi-check">
+  <div class="iyi-header">
+    <div class="iyi-title">
+      A.Patrick
+    </div>
+  </div>
+  <div class="iyi-btn">
+    <label for="iyi-check">
+      <span></span>
+      <span></span>
+      <span></span>
+    </label>
+  </div>
+  
+  <div class="iyi-links">
+  <a href="index.html" class="active">Home</a>
+  <a href="about.html">About Me </a>
+  <a href="skills.html">Skills</a>
+  <a href="portfolio.html">Portofolio</a>
+  <a href="blog.html">Blogs</a>
+  <a href="contact.html">Contact Me</a>
+  <a href="login.html">Login</a>
+  </div>
+  </div>
+
+<div class="container-md">
+  	<div class="row">
+  		<div class="col-md-10">
+      <h1 class="kuruhande">Hello,👋<br>
+
+        I am a Software <b class="developer">Developer</b></h1>  
+        <p>Experienced software engineer in creating and developing
+ software solutions and full stack application.</p>
+  <a href="contact.html"><button type="button" class="btn btn-primary">Contact Me</button></a>
+</div>
+  		<div class="col-md-2">
+      <img src="use.jpg" class="homeimage">  
+      </div>
+  	</div>
+  	</div>
+
+</body>
+</html>
+
+
+
