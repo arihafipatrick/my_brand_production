@@ -4,6 +4,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	 <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"/>
 	<link rel="stylesheet" href="w3.css">
 	<title>My Portfolio</title>
 
@@ -15,6 +16,7 @@
 body {
   margin: 0px;
   font-family: 'segoe ui';
+  color: #000;
 }
 
 .iyi {
@@ -64,25 +66,23 @@ body {
  .developer{
   color:#1D4ED8 ;
  }
-
 .homeimage{
   /* use 1 */
 
 box-sizing: border-box;
 
 position: absolute;
-max-width: 35%;
-bottom: -200px;
+max-width: 28%;
 opacity: 0.7;
 backdrop-filter: blur(2px);
-padding: 80px;
-right: -80px;
+right: 160px;
+ 
 
 /* Note: backdrop-filter has minimal browser support */
 
 }
 .kuruhande{
-  margin-top: 150px;
+  margin-top: 20px;
 }
 .iyi a.active {
   background-color: #1D4ED8;
@@ -146,8 +146,7 @@ background: url(use.jpg);
 opacity: 0.7;
 backdrop-filter: blur(2px);
 right: 0px;
-top: 0px;
-visibility: hidden;
+
 /* Note: backdrop-filter has minimal browser support */
 
 }
@@ -159,7 +158,7 @@ visibility: hidden;
 [class*="col"]{
 			padding: 1rem;
 			margin-top: 20px;
-			background-color: #ffff;
+			background-color: #fff;
 			border: 2px solid #fff;
 		}
 	</style>
@@ -181,8 +180,8 @@ visibility: hidden;
   
   <div class="iyi-links">
   <a href="index.html">Home</a>
-  <a href="about.html"class="active">About Me </a>
-   <a href="skills.html">Skills</a>
+  <a href="about.html">About Me </a>
+  <a href="skills.html" class="active">Skills</a>
   <a href="portfolio.html">Portofolio</a>
   <a href="blog.html">Blogs</a>
   <a href="contact.html">Contact Me</a>
@@ -192,35 +191,30 @@ visibility: hidden;
 
 <div class="container-md">
   	<div class="row">
-  		<div class="col-md-10">
-      <h1 class="kuruhande">About Me</h1>  
-        <p>Find out more about Patrick Arihafi, his background, and his activities.
-what he enjoys doing, his interests, and his hobbies.<br><br>
-Hello there,<br>
-I'm a junior software engineer and full stack developer by the name of 
-<b class="developer">Patrick Arihafi.</b>
-I've been working in the technology sector for more than 
-5 years.
-I worked on a variety of real-world projects that gave me experience 
-and helped bring about constructive change.
-I have a lot of energy and love to
-learn new things. 
-I'm a tech nerd, but I also enjoy watching movies and playing
-volleyball.<br>
-<b class="developer">Fun fact about me:</b> I love to cook.</p>
+  		<div class="col-md-12">
+      <h1 class="kuruhande">Skills</h1>  
+        <p>skills in the tech industry and the different professional services he can offer if you hire him.</p>
+</div>
+</div>
+<div class="row">
+  		<div class="col-md-4">
+     <h5><b class="developer">What I know</b></h5>
+      <i class="fa-brands fa-php fa-3x"></i>
+    <i class="fa-brands fa-java fa-3x"></i><br>
+    <i class="fa-brands fa-mysql fa-3x"></i>
+    <i class="fa-solid fa-database fa-3x"></i>
       </div>
-  		<div class="col-md-2">
-      <img src="1.png" class="homeimage">  
+      <div class="col-md-4">
+     <h5><b class="developer">Learning</b></h5>
+     <i class="fa-brands fa-square-js fa-3x"></i>
+     <i class="fa-brands fa-figma fa-3x"></i><br>
+     <i class="fa-brands fa-git fa-3x"></i>
       </div>
   	</div>
   	</div>
 
 </body>
 </html>
-
-
-
-
 
 
 
