@@ -43,6 +43,8 @@ const options = {
 
 const specs = swaggerJsDoc(options)
 
+app.set('view engine', 'ejs');
+
 //midleware
 app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(specs))
 app.use('/api/user', authRoute);
