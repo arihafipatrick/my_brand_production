@@ -33,10 +33,8 @@ const options = {
     JWT: []
   }],
     servers: [
-      {
-        url:"http://localhost:3000",
-        url:"https://mybrandproduction.up.railway.app/"
-      }
+        { url: "https://mybrandproduction.up.railway.app/" },
+        { url: "http://localhost:3000" },
     ],
   },
   apis:["./routes/*.js"]
