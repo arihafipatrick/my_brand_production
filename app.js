@@ -55,7 +55,7 @@ app.get("", (req, res) => res.render("index"));
 dotenv.config();
  //connect to DB
  mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser: true }, () => {
-  console.log("connected to db");
+  console.log("connected to DataBase");
 });
  
 //lISTENING
