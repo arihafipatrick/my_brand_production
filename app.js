@@ -50,7 +50,7 @@ app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(specs))
 app.use('/api/user', authRoute);
 app.use('/api/posts', postRoute);
 app.use('/api/message',messageRoute);
-app.get("/", (req, res) => res.render("index"));
+app.get("", (req, res) => res.render("index"));
 
 dotenv.config();
  //connect to DB
