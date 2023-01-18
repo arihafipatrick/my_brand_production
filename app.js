@@ -54,6 +54,7 @@ app.get("/", (req, res) => res.render("index"));
 app.get("/about", (req, res) => res.render("about"));
 app.get("/skills", (req, res) => res.render("skills"));
 app.get("/portfolio", (req, res) => res.render("portfolio"));
+app.get("/blog", (req, res) => res.render("blog"));
 app.get("/contact", (req, res) => res.render("contact"));
 app.get("/login", (req, res) => res.render("login"));
 app.get("/signup", (req, res) => res.render("signup"));
