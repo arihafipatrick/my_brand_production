@@ -50,6 +50,7 @@ app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(specs))
 app.use('/api/user', authRoute);
 app.use('/api/posts', postRoute);
 app.use('/api/message',messageRoute);
+app.use('/public/', express.static('./public'));
 app.get("/", (req, res) => res.render("index"));
 app.get("/about", (req, res) => res.render("about"));
 app.get("/skills", (req, res) => res.render("skills"));
