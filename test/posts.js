@@ -4,7 +4,7 @@ const expect  = require('chai').expect;
 const request = require('supertest');
 const chai = require('chai');
 const chaiHttp = require('chai-http');
-const server = require('../index');
+const server = require('../app');
 
 //Assertion Style
 let should = chai.should();

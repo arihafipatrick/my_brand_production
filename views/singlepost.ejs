@@ -176,6 +176,21 @@ right: 0px;
 			background-color: #fff;
 			border: 2px solid #fff;
 		}
+
+/*    like butonn*/
+
+.like__btn {
+  padding: 10px 15px;
+  background: #1D4ED8;
+  font-size: 18px;
+  font-family: "Open Sans", sans-serif;
+  border-radius: 5px;
+  color: #ffff;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
 	</style>
 <body>
 <div class="iyi">
@@ -194,35 +209,52 @@ right: 0px;
   </div>
   
   <div class="iyi-links">
-    <a href="/">Home</a>
-    <a href="/about">About Me </a>
-     <a href="/skills">Skills</a>
-    <a href="/portfolio">Portofolio</a>
-    <a href="/blog"class="active">Blogs</a>
-    <a href="/contact">Contact Me</a>
-    <a href="/login">Login</a>
+  <a href="index.html">Home</a>
+  <a href="about.html">About Me </a>
+  <a href="skills.html">Skills</a>
+  <a href="portfolio.html">Portofolio</a>
+  <a href="blog.html"class="active">Blogs</a>
+  <a href="contact.html">Contact Me</a>
+  <a href="login.html">Login</a>
   </div>
   </div>
 
 <div class="container">
   	<div class="row">
-  		<div class="col-md-12">
-      <h1 class="kuruhande">Blogs</h1>  
-        <p>Discover some fascinating, cool posts!</p>
+  		<div class="col-md-20">
+      <h1 class="kuruhande"><%= postSingle.title %></h1>  
+        <p>
+          <%= postSingle.description %>
+        </p>
+        <hr>
+        <button class="like__btn">
+   <span id="icon"><i class="far fa-thumbs-up"></i></span>
+   <span id="count">0</span> Like
+</button>
 </div>
-</div>
-<!-- <div class="row">
-  <div class="cards" id="showPosts">
-  </div> -->
-  <% postList.forEach(post =>{%>
-  		<div class="col-md-4" id="cards">
-      <h4><%= post.title %></h4>
-     <p>
-      <%= post.description %>
-     </p>
-     <a class="blogTitle" href="blog/<%=post._id%>"><button type="button" class="btn btn-primary" style="margin-left:140px;background-color: #1D4ED8;">Read More>></button></a>
+
+  <div class="col-md-8">
+    <form name="commentForm">
+      <textarea name="comment" id="comment" rows="5" class="form-control" placeholder="Add your comment here" required></textarea><span id="commentnav" style="color:red;"></span><br>
+    <button type="submit" style="background-color: #1D4ED8;" class="btn btn-primary">Add Comment</button>
+    </form>
+    <div class="col-sm-9">
+      <div class="well">
+        <h4>Comments</h4>
+        <div class="row">
+          <div class="col-sm-9">
+           <p class="postList"> 
+            
+           </p>
+           <p id="comment_time"></p>
+          </div>
+        </div>
       </div>
-      <% }) %>
-    </div> 
+  </div
+      </div>
+    </div>
+
 </body>
 </html>
+
+

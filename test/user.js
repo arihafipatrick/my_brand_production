@@ -4,7 +4,7 @@ const expect  = require('chai').expect;
 const request = require('supertest');
 const chai = require('chai');
 const chaiHttp = require('chai-http');
-const server = require('../index');
+const server = require('../app');
 
 //Assertion Style
 let should = chai.should();
@@ -86,7 +86,7 @@ describe('SignUp and SignIn for the user', () =>{
 it('New User: OK, SignUp works',(done) =>{
   chai.request(server)
   .post('/api/user/register')
-  .send({name:'Testt name', email: 'testyjkboduhiok@gmail.com', password: 'testpasssword'})
+  .send({name:'Testt name', email: 'testyjkbodughiok@gmail.com', password: 'testpasssword'})
   .then((res) =>{
     const body = res.body;
     res.status.should.be.eql(200);

@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const app = express();
 const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
+const ejs = require('ejs');
 app.use(bodyParser.json());
 //import routes
 const authRoute = require('./routes/auth');
@@ -10,6 +11,7 @@ const postRoute = require('./routes/posts');
 const messageRoute = require('./routes/userMessages')
 const swaggerUI = require('swagger-ui-express');
 const swaggerJsDoc = require('swagger-jsdoc');
+const Post = require('./models/Post');
 
 //swagger definition
 const options = {
@@ -55,7 +57,25 @@ app.get("/", (req, res) => res.render("index"));
 app.get("/about", (req, res) => res.render("about"));
 app.get("/skills", (req, res) => res.render("skills"));
 app.get("/portfolio", (req, res) => res.render("portfolio"));
-app.get("/blog", (req, res) => res.render("blog"));
+app.get("/blog", (req, res) =>{
+  Post.find({},function(err,posts){
+    res.render("blog",{
+      postList: posts
+    })
+  })
+});
+app.get("/blog/:id", ( req, res) =>{
+ const id = req.params.id;
+ Post.findById(id)
+ .then(result =>{
+  res.render("singlepost",{
+    postSingle: result, title: 'Blog Details'
+  });
+ })
+.catch(err =>{
+  console.log(err);
+});
+});
 app.get("/contact", (req, res) => res.render("contact"));
 app.get("/login", (req, res) => res.render("login"));
 app.get("/signup", (req, res) => res.render("signup"));
