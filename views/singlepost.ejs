@@ -209,13 +209,13 @@ right: 0px;
   </div>
   
   <div class="iyi-links">
-  <a href="index.html">Home</a>
-  <a href="about.html">About Me </a>
-  <a href="skills.html">Skills</a>
-  <a href="portfolio.html">Portofolio</a>
-  <a href="blog.html"class="active">Blogs</a>
-  <a href="contact.html">Contact Me</a>
-  <a href="login.html">Login</a>
+    <a href="/">Home</a>
+    <a href="/about">About Me </a>
+     <a href="/skills">Skills</a>
+    <a href="/portfolio">Portofolio</a>
+    <a href="/blog"class="active">Blogs</a>
+    <a href="/contact">Contact Me</a>
+    <a href="/login">Login</a>
   </div>
   </div>
 
@@ -227,10 +227,13 @@ right: 0px;
           <%= postSingle.description %>
         </p>
         <hr>
-        <button class="like__btn">
+        <a href="#" id="lp" onclick="likePost('<%=postSingle._id %>')" dataid = "<%=postSingle._id %>" class="like"><button class="like__btn">
    <span id="icon"><i class="far fa-thumbs-up"></i></span>
    <span id="count">0</span> Like
-</button>
+   <span id=" #lk_msg"></span>
+  
+</button></a>
+
 </div>
 
   <div class="col-md-8">
@@ -255,6 +258,30 @@ right: 0px;
     </div>
 
 </body>
+<script>
+  const likePost = async (post_id) => {
+    const post = post_id;
+    const request = await fetch("/:post/toggle-like", {
+      method: "POST",
+      body: JSON.stringify({ post_id }),
+      headers: { "Content-Type": "application/json" },
+    });
+    const response = await request.json();
+    if ((await response.status) == 201) {
+      count = count + 1;
+      // lp.style.color = "green";
+    } else if ((await response.status) == 403) {
+      document.querySelector("#lk_msg").innerHTML =
+        "Please login to make an action on post";
+    } else {
+      count = count - 1;
+      // lp.style.color = "#003";
+    }
+    document.getElementById(
+      "lp"
+    ).innerHTML = `<i class="fa-regular fa-thumbs-up"></i> <%= count %>`;
+  };
+</script>
 </html>
 
 
