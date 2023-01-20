@@ -214,56 +214,15 @@ right: 0px;
 <!-- <div class="row">
   <div class="cards" id="showPosts">
   </div> -->
+  <% postList.forEach(post =>{%>
   		<div class="col-md-4" id="cards">
-     
+      <h4><%= post.title %></h4>
+     <p>
+      <%= post.description %>
+     </p>
+     <a class="blogTitle" href="blog/<%=post._id%>"><button type="button" class="btn btn-primary" style="margin-left:140px;background-color: #1D4ED8;">Read More>></button></a>
       </div>
-
+      <% }) %>
     </div> 
 </body>
-<script>
-async function getblogs(){
-try{
-const data = await fetch("/api/posts")
-
-return await data.json()
-}
-catch(error){
- console.log(error)
-}
-}
-
-async function renderblogs(){
-    let gotblogs= await getblogs()
-    var blogpage_blogs = gotblogs.data.blogs 
-    blogdiv.innerHTML=""
-blogpage_blogs.forEach(element => {
-  
-  let nbody= element.body.split(" ").slice(0,12).join(" ")
-  let ntitle= element.title.split("").slice(0,25).join("")
-  if(ntitle != element.title){
-    ntitle=`${ntitle}..`
-  }  
-  if(nbody != element.body){
-    nbody=`${nbody}..`
-  }  
-    blogdiv.innerHTML+=`
-    <div id="blog_${element._id}" class="blog">
-        <img src="${element.image}" class="blog_image" />
-        <div class="blog_text">
-           <a href="../singleblog/single.html?id=${element._id}"> <h1 id="fullpg_${element._id}"  class="blog_title" >${ntitle}</h1></a>
-            <p class="blog_description">
-            ${nbody}..
-        </p></div>
-        <div class="like_comment">
-<div class="blog_like"><img id="like_${element._id}" src="../images/whitelike.png" class="like_icon" onclick="likethis(this.id)"><p class="blog_number" id="liks_${element._id}">${element.likes.length}</p></div>
-<div class="blog_comment"><img id="comment_${element._id}" src="../images/comment.png" class="comment_icon"><p class="blog_number" id="cts_${element._id}">${element.comments.length}</p></div>
-        </div>             
-             `        
-        
-}); 
- 
- 
-    return gotblogs
-}
-</script>
 </html>
