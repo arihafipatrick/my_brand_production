@@ -230,27 +230,29 @@ right: 0px;
 <script>
  const form = document.getElementById('loginForm');
 
- form.addEventListener('submit', function(e){
+ form.addEventListener('submit', async (e) =>{
   e.preventDefault();
-
- const payLoad =  new FormData(form);
- console.log([...payLoad])
-fetch('https://mybrandproduction.up.railway.app/api/user/login', {
-  method: "POST",
-  credentials: "include",
-  mode: 'cors',
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-      },
-      body: JSON.stringify({
-        payLoad
-      }) 
-}) 
-.then(res => res.json())
-.then(data => console.log(data))
-.catch(err => console.log(err))
- })
+      // Getting input values
+      const email = form.email.value;
+      const password = form.password.value;
+      // emailError.textContent = usernameError.textContent = passwordError.textContent = "";
+      try {
+        const request = await fetch('/api/user/login', {
+          method: "POST",
+          body: JSON.stringify({
+            email,
+            password
+          }),
+          headers: {
+            'Content-Type': "application/json"
+          }
+        });
+        const responseData = await request.json();
+          location.assign('/blog')
+      } catch (err) {
+        console.log(err)
+      }
+    });
 </script>
 </html>
 
