@@ -199,7 +199,7 @@ right: 0px;
 <div class="col-md-4" id="cards">
         <center>
           <h2 class="kuruhandee">Register</h2>
-          <form>
+          <form id="signForm">
       <input type="text" class="form-control" placeholder="Name" id="name" name="name"><br>
       <div class="name error"></div>
       <input type="text" class="form-control" placeholder="E-mail" id="email" name="email"><br>
@@ -231,43 +231,35 @@ right: 0px;
   </div>
 </body>
 <script>
-  const form = document.querySelector("form");
-  let emailError = document.querySelector(".email.error");
-  let nameError = document.querySelector(".username.error");
-  let passwordError = document.querySelector(".password.error");
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    // Getting input values
-    const email = form.email.value;
-    const password = form.password.value;
-    emailError.textContent = passwordError.textContent = "";
-    try {
-      const request = await fetch('/api/user/register', {
-        method: "POST",
-        body: JSON.stringify({
-          name,
-          email,
-          password
-        }),
-        headers: {
-          'Content-Type': "application/json"
-        }
-      });
-      const responseData = await request.json();
-      location.assign('/blog')
-      // if (responseData.errors) {
-      //   nameError.textContent = responseData.errors.name;
-      //   emailError.textContent = responseData.errors.email;
-      //   passwordError.textContent = responseData.errors.password;
-      // }
-      // if (responseData.user) {
-      //   location.assign('/blog')
-      // }
-    } catch (err) {
-      console.log(err)
-    }
-  });
-</script>
+  const form = document.getElementById('signForm');
+ 
+  form.addEventListener('submit', async (e) =>{
+   e.preventDefault();
+       // Getting input values
+       const name = form.name.value;
+       const email = form.email.value;
+       const password = form.password.value;
+       // emailError.textContent = usernameError.textContent = passwordError.textContent = "";
+       try {
+         const request = await fetch('/api/user/register', {
+           method: "POST",
+           body: JSON.stringify({
+             name,
+             email,
+             password
+           }),
+           headers: {
+             'Content-Type': "application/json"
+           }
+         });
+         const responseData = await request.json();
+           location.assign('/login')
+           
+       } catch (err) {
+         console.log(err)
+       }
+     });
+ </script>
 </html>
 
 

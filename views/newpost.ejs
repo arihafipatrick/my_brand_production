@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>My Portfolio</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  
+   
+  <style>
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 650px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+        
+    /* On small screens, set height to 'auto' for the grid */
+    @media screen and (max-width: 767px) {
+      .row.content {height: auto;} 
+    }
+    .nav.navbar-nav.active{
+       background-color: #1D4ED8;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse visible-xs">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">A.Patrick</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a href="#">Home</a></li>
+        <li class="active"><a href="#">Add New Post</a></li>
+        <li><a href="#">Gender</a></li>
+        <li><a href="#">Geo</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid">
+  <div class="row content">
+    <div class="col-sm-3 sidenav hidden-xs">
+      <h2>A.Patrick</h2>
+      <ul class="nav nav-pills nav-stacked">
+        <li><a href="admin.html">Home</a></li>
+        <li class="active"><a href="newpost2.html">Add New Post</a></li>
+        <li><a href="#">Comments</a></li>
+        <li><a href="#">View All Blog Post</a></li>
+      </ul><br>
+    </div>
+    <br>
+    
+    <div class="col-sm-9">
+      <div class="well">
+        <h4>Add new Post Details Here</h4>
+        <p>Fill the form bellow..</p>
+      </div>
+       <div class="row">
+        <div class="col-md-12">
+        </div>
+
+    <br><br>
+        <div class="col-md-8">
+
+  <form autocomplete="off" id="postForm">
+                     
+                          <label></label><label class="validation-error hide" id="titleValidationError"></label><br>
+                          <input type="text" name="title" id="title" class="form-control" placeholder="Title">
+                      
+                          <label> Description</label><br>
+                          <textarea name="description" id="description" rows="5" class="form-control"></textarea><br>
+                     
+                          <input type="submit" value="Submit" class="btn btn-primary" style="background-color: #1D4ED8;"><br><br>
+                  </form>
+
+   </div>  
+</div>
+
+ 
+    </div>
+  </div>
+</div>
+</body>
+<script>
+  const form = document.getElementById('postForm');
+ 
+ form.addEventListener('submit', async (e) =>{
+  e.preventDefault();
+      // Getting input values
+      const title= form.title.value;
+      const description = form.description.value;
+      // emailError.textContent = usernameError.textContent = passwordError.textContent = "";
+      try {
+        const request = await fetch('/api/posts', {
+          method: "POST",
+          body: JSON.stringify({
+            title,
+            description
+          }),
+          headers: {
+            'Content-Type': "application/json"
+          }
+        });
+        const responseData = await request.json();
+          location.assign('/blog')
+          
+      } catch (err) {
+        console.log(err)
+      }
+    });
+</script>
+</html>

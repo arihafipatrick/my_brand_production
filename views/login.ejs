@@ -209,14 +209,14 @@ right: 0px;
         <center>
           <h2 class="kuruhandee">Login</h2>
           <form id="loginForm">
-      <input type="text" class="form-control" placeholder="Email" name="email" onChange={this.handleIdInput} 
-      id="id"><br>
+      <input type="text" class="form-control" placeholder="Email" name="email"    id="id" required><br>
       <div class="email error"></div>
    
-      <input type="password" class="form-control" placeholder="Password" name="password" onChange={this.handlePwInput} id="password"><br>
-      <div class="password error"></div>
+      <input type="password" class="form-control" placeholder="Password" name="password" id="password" required><br>
+      <div class="password error" ></div>
       
      <input type="submit" value="Login" class="btn btn-primary" style="background-color: #1D4ED8;" ><br>Don't have an account?<a href="./signup">Register</a>
+     <div id="login_error"></div>
    </form>
    </center>
       </div>
@@ -249,6 +249,7 @@ right: 0px;
         });
         const responseData = await request.json();
           location.assign('/blog')
+          
       } catch (err) {
         console.log(err)
       }
