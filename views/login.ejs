@@ -209,13 +209,14 @@ right: 0px;
         <center>
           <h2 class="kuruhandee">Login</h2>
           <form id="loginForm">
-      <input type="text" class="form-control" placeholder="Email" id="email" name="email" ><br>
+      <input type="text" class="form-control" placeholder="Email" name="email" onChange={this.handleIdInput} 
+      id="id"><br>
       <div class="email error"></div>
    
-      <input type="password" class="form-control" placeholder="Password" id="userPassword" name="password" ><br>
+      <input type="password" class="form-control" placeholder="Password" name="password" onChange={this.handlePwInput} id="password"><br>
       <div class="password error"></div>
       
-     <input type="submit" value="Login" class="btn btn-primary" style="background-color: #1D4ED8;"><br>Don't have an account?<a href="./signup">Register</a>
+     <input type="submit" value="Login" class="btn btn-primary" style="background-color: #1D4ED8;" ><br>Don't have an account?<a href="./signup">Register</a>
    </form>
    </center>
       </div>
@@ -227,40 +228,29 @@ right: 0px;
     </div>
 </body>
 <script>
-  const thisForm = document.querySelector("#loginForm");
-  let emailError = document.querySelector(".email.error");
-  let usernameError = document.querySelector(".username.error");
-  let passwordError = document.querySelector(".password.error");
-  thisForm.addEventListener("submit",async (e) => {
-    e.preventDefault();
-    // Getting input values
-    const email = thisForm.email;
-    const password = thisForm.password;
-    emailError.textContent = passwordError.textContent = "";
-    console.log(email);
-    try {
-      const request = await fetch('/api/user/login', {
-        method: "POST",
-        body: JSON.stringify({
-        email,
-        password
-        }),
-        headers: {
-          'Content-Type': "application/JSON"
-        }
-      });
-      const responseData = await request.json();
-      if (responseData.errors) {
-        emailError.textContent = responseData.errors.email;
-        passwordError.textContent = responseData.errors.password;
-      }
-      if (responseData.user) {
-        location.assign('/blog')
-      }
-    } catch (err) {
-      console.log(err)
-    }
-  });
+ const form = document.getElementById('loginForm');
+
+ form.addEventListener('submit', function(e){
+  e.preventDefault();
+
+ const payLoad =  new FormData(form);
+ console.log([...payLoad])
+fetch('https://mybrandproduction.up.railway.app/api/user/login', {
+  method: "POST",
+  credentials: "include",
+  mode: 'cors',
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+      },
+      body: JSON.stringify({
+        payLoad
+      }) 
+}) 
+.then(res => res.json())
+.then(data => console.log(data))
+.catch(err => console.log(err))
+ })
 </script>
 </html>
 
