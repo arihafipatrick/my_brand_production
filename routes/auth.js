@@ -135,8 +135,8 @@ router.post('/login', async (req,res) =>{
   //create and assign token
   const token = jwt.sign({_id: user._id, role: user.role}, process.env.ACCESS_TOKEN_SECRET)
   const role = jwt.sign({role: user.role}, process.env.ACCESS_TOKEN_SECRET)
-  res.header('auth-token', token, role).send(token)
-  // res.send('Logged In!!!')
+  res.json(role)
+  // res.header('auth-token', token, role).send(token)
 });
 
 
