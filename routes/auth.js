@@ -122,21 +122,30 @@ const hashPassword = await bcrypt.hash(req.body.password, salt);
  */
 
 //LOGIN
+//create and assign token
+const MAXAGE = 3 * 24 * 60 * 60;
+const createToken = (id) => {
+    return jwt.sign({ id }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: MAXAGE });
+};
 router.post('/login', async (req,res) =>{
   const {error} = loginValidation(req.body);
   if(error) return res.status(400).send(error.details[0].message);
   //Checking if the email exixts
   const user = await User.findOne({email : req.body.email});
-  if(!user) return res.status(400).send('Email or Password is wrong');
+  if(!user) return res.status(400).json({message:"Email or Password is wrong"});
   //Password is CORRECT
   const validPass = await bcrypt.compare(req.body.password, user.password);
-  if(!validPass) return res.status(400).send('Invalid Password')
+  if(!validPass) return res.status(400).json({message:"Invalid Password"})
 
-  //create and assign token
-  const token = jwt.sign({_id: user._id, role: user.role}, process.env.ACCESS_TOKEN_SECRET)
-  const role = jwt.sign({role: user.role}, process.env.ACCESS_TOKEN_SECRET)
-  res.json(role)
-  // res.header('auth-token', token, role).send(token)
+  
+  const token = createToken(user._id);
+  res.cookie("jwt", token, { httpOnly: true, maxAge: MAXAGE * 1000 });
+  res.status(201).json({
+    statusCode: 201,
+    message: "User Logged in Successfuly",
+    data: { Name: user.name, Email: user.email, jwt: token,Role: user.role},
+});
+
 });
 
 
@@ -199,6 +208,27 @@ router.delete('/:userId', async (req,res)=>{
   }
 })
 
-
-
+const checkUser = (req, res, next) => {
+  const token = req.cookies.jwt;
+  // check it jwt exists and verified
+  if (token) {
+      jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, async (err, decodedToken) => {
+          if (err) {
+              res.json({ status: 400, message: "an error occured", err });
+              next();
+          } else {
+              let user = await User.findById(decodedToken.id);
+              res.status(200).json({
+                  status: 200,
+                  message: "Current user",
+                  // data: [{ name: user.name, email: user.email }],
+                  data: user,
+              });
+          }
+      });
+  } else {
+      res.json({ message: "No user logged in" });
+  }
+};
+module.exports = checkUser;
 module.exports = router;

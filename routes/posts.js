@@ -101,8 +101,8 @@ const {isAdmin} = require ('../verifyRole')
  //submit a post
  router2.post('/',verify,isAdmin, async (req, res)=>{
    //lets validate postdata
-   const{error} = postValidation(req.body);
-   if(error) return res.status(400).send(error.details[0].message);
+   const{errors} = postValidation(req.body);
+   if(errors) return  res.status(400).json({ errors});
 
    const post = new Post({
     title: req.body.title,
@@ -118,8 +118,8 @@ const {isAdmin} = require ('../verifyRole')
 });
 
  } catch (err) {
-   console.log(err);
-   res.status(400).send('Post not Created');
+   const errors = handleErrors(err);
+    res.status(400).json({ errors });
  } 
  });
 

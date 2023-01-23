@@ -208,14 +208,15 @@ right: 0px;
 <div class="col-md-4" id="cards">
         <center>
           <h2 class="kuruhandee">Login</h2>
+          <p id="hints"></p>
           <form id="loginForm">
-      <input type="text" class="form-control" placeholder="Email" name="email"    id="id" required><br>
+      <input type="text" class="form-control" placeholder="Email" name="email"    id="email" required><br>
       <div class="email error"></div>
    
       <input type="password" class="form-control" placeholder="Password" name="password" id="password" required><br>
       <div class="password error" ></div>
       
-     <input type="submit" value="Login" class="btn btn-primary" style="background-color: #1D4ED8;" ><br>Don't have an account?<a href="./signup">Register</a>
+     <input type="submit" value="Login" class="btn btn-primary" style="background-color: #1D4ED8;" onClick="submitForm()"><br>Don't have an account?<a href="./signup">Register</a>
      <div id="login_error"></div>
    </form>
    </center>
@@ -228,33 +229,44 @@ right: 0px;
     </div>
 </body>
 <script>
- const form = document.getElementById('loginForm');
-
- form.addEventListener('submit', async (e) =>{
-  e.preventDefault();
-      // Getting input values
-      const email = form.email.value;
-      const password = form.password.value;
-      // emailError.textContent = usernameError.textContent = passwordError.textContent = "";
-      try {
-        const request = await fetch('/api/user/login', {
+  function submitForm() {
+      event.preventDefault();
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      const formData = { email: email, password: password };
+      fetch("/api/user/login", {
           method: "POST",
-          body: JSON.stringify({
-            email,
-            password
-          }),
+          body: JSON.stringify(formData),
           headers: {
-            'Content-Type': "application/json"
-          }
-        });
-        const responseData = await request.json();
-          location.assign('/blog')
-          
-      } catch (err) {
-        console.log(err)
-      }
-    });
+              "Content-Type": "application/json",
+          },
+      })
+          .then((response) => {
+              if (response.ok) {
+                  response.json().then((data) => {
+                      console.log(response.data);
+                      if (data.Role === "ADMIN") {
+                        location.assign('/dashboard')
+                    } else {
+                        location.assign('/blog');
+                    }
+                     
+                  });
+                  // handle successful login
+              } else {
+                  document.getElementById("hints").innerHTML =
+                      "Wrong Email or Password";
+                  // handle error
+              }
+          })
+          .catch((error) => {
+              document.getElementById("hints").innerHTML =
+                  "Server error try again";
+              // handle error
+          });
+  }
 </script>
+
 </html>
 
 
